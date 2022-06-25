@@ -31,7 +31,7 @@ export class CourseResolver {
   @Query(() => Course)
   @UseGuards(AuthorizationGuard)
   async course(@Args('id') id: string, @CurrentUser() user: AuthUser) {
-    const student = await this.studentsService.getStudentByAuthUser(user.sub);
+    const student = await this.studentsService.getStudentByAuthUserId(user.sub);
 
     if (!student) {
       throw new Error('Student Not Found!');
